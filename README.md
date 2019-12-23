@@ -16,3 +16,4 @@ ssh config file:
     	Hostname 10.132.0.3
     	ProxyJump appuser@35.206.133.35:22
     	User appuser
+    	IdentityFile ~/.ssh/appuser
