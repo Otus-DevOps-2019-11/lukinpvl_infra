@@ -1,6 +1,13 @@
 # lukinpvl_infra
 lukinpvl Infra repository
 
+# homeweork #5 - packer-base
+
+created packer template for puma appliaction
+how to use:
+	1) start config_scripts/create-reddit-vm.sh to deploy puma application
+	2) check it on EXTERNAL_IP:9292
+
 # homework #4 - cloud-testapp
 
 testapp_IP = 35.233.49.23
