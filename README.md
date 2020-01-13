@@ -1,7 +1,18 @@
 # lukinpvl_infra
 lukinpvl Infra repository
 
-# homeweork #5 - packer-base
+# homework #6 - terraform-1
+created terraporm config for puma appliaction
+how to use:
+	1) execute terraform apply to deploy puma application
+	2) check it on EXTERNAL_IP:9292
+
+Exercise with *
+Manually added ssh keys deleted after executing the terraform apply command
+There is no problem on this step
+
+
+# homework #5 - packer-base
 
 created packer template for puma appliaction
 how to use:
