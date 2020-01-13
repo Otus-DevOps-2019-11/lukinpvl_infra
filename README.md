@@ -8,6 +8,9 @@ how to use:
 	2) check it on EXTERNAL_IP:9292
 
 Exercise with *
+To adding additional ssh keys:
+	ssh-keys = "appuser:${file(var.public_key_path)} appuser1:${file(var.public_key_path)} appuser2:${file(var.public_key_path)}"
+
 Manually added ssh keys deleted after executing the terraform apply command
 There is no problem on this step
 
