@@ -20,3 +20,10 @@ variable zone {
   description = "Zone"
   default     = "europe-west1-b"
 }
+variable target_tags {
+  description = "Target tags"
+}
+variable instance_count {
+  description = "Instanse count"
+  default     = 1
+}
