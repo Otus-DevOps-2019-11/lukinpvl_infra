@@ -1,9 +1,28 @@
 # lukinpvl_infra
 lukinpvl Infra repository
 
-# homeweork #5 - packer-base
+# homework #6 - terraform-1
+Created terraform config for puma appliaction
+how to use:
+	1) execute terraform apply to deploy puma application
+	2) check it on EXTERNAL_IP:9292
 
-created packer template for puma appliaction
+Exercise with *
+to adding additional ssh keys:
+    	ssh-keys = "appuser:${file(var.public_key_path)} appuser1:${file(var.public_key_path)} appuser2:${file(var.public_key_path)}"
+
+manually added ssh keys deleted after executing the terraform apply command
+there is no problem on this step
+
+Exercise with **
+created and checked load balancer for puma appplication servers group (count used)
+	terraform conf file: ./terraform/lb.tf.example
+
+
+
+# homework #5 - packer-base
+
+Created packer template for puma appliaction
 how to use:
 	1) start config_scripts/create-reddit-vm.sh to deploy puma application
 	2) check it on EXTERNAL_IP:9292
