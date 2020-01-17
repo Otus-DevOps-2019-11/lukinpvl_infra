@@ -1,6 +1,11 @@
 # lukinpvl_infra
 lukinpvl Infra repository
 
+
+# homework #7 - terraform-2
+Created terraform config with backend in bucket (ex*) for ready-to-use (ex**) puma application with app and db modules
+
+
 # homework #6 - terraform-1
 Created terraform config for puma appliaction
 how to use:

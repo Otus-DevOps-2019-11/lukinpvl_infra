@@ -4,19 +4,19 @@ provider "google" {
   region  = var.region
 }
 
-module "storage-bucket" {
+module "storage-bucket-stage" {
   source  = "SweetOps/storage-bucket/google"
   version = "0.3.0"
-
-  # Имя поменяйте на другое
-  name = "storage-bucket-stage"
+  location = var.region
+  force_destroy = true
+  name = "storage-bucket-stage-1"
 }
-module "storage-bucket" {
+module "storage-bucket-prod"{
   source  = "SweetOps/storage-bucket/google"
   version = "0.3.0"
-
-  # Имя поменяйте на другое
-  name = "storage-bucket-prod"
+  location = var.region
+  force_destroy = true
+  name = "storage-bucket-prod-1"
 }
 
 output storage-bucke-stage__url {

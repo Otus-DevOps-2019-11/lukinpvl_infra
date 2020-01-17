@@ -15,6 +15,37 @@ resource "google_compute_instance" "app" {
   metadata = {
     ssh-keys = "appuser:${file(var.public_key_path)}"
   }
+  connection {
+    type        = "ssh"
+    host        = self.network_interface[0].access_config[0].nat_ip
+    user        = "appuser"
+    agent       = false
+    private_key = file(var.private_key_path)
+  }
+   provisioner "remote-exec" {
+    inline = [<<EOF
+      set -e
+      cat > /tmp/puma.service <<'EOT'
+      [Unit]
+      Description=Puma HTTP Server
+      After=network.target
+
+      [Service]
+      Type=simple
+      User=appuser
+      WorkingDirectory=/home/appuser/reddit
+      Environment=DATABASE_URL=${var.reddit_db_ip}
+      ExecStart=/usr/local/bin/puma -C /var/lib/gems/2.3.0/gems/puma-3.10.0/lib/puma.rb --dir /home/appuser/reddit
+      Restart=always
+
+      [Install]
+      WantedBy=multi-user.target
+      EOF
+    ]
+  }
+  provisioner "remote-exec" {
+    script = "${path.module}/files/deploy.sh"
+  }
 }
 
 resource "google_compute_address" "app_ip" {
