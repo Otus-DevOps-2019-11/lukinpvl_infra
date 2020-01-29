@@ -2,11 +2,8 @@
 lukinpvl Infra repository
 
 # homework #8 - ansible-1
-After deleting reddit directory (rm -rf ~/reddit) ansible status changed from 'changed=0' to 'changed=1'
+After deleting reddit directory (rm -rf ~/reddit) ansible status changed from 'changed=0' to 'changed=1', brcau
 
-Exercise with *
-added python script to get VM instances information from gcp
-added dynamic inventory for ansible
 
 # homework #7 - terraform-2
 Created terraform config with backend in bucket (ex*) for ready-to-use (ex**) puma application with app and db modules
