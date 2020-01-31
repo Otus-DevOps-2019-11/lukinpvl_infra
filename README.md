@@ -1,6 +1,9 @@
 # lukinpvl_infra
 lukinpvl Infra repository
 
+# homework #9 - ansible-2
+Prepared ansible playbooks for Reddit app with templates and headlers
+
 # homework #8 - ansible-1
 After deleting reddit directory (rm -rf ~/reddit) ansible status changed from 'changed=0' to 'changed=1'
 
@@ -10,7 +13,6 @@ added dynamic inventory for ansible
 
 # homework #7 - terraform-2
 Created terraform config with backend in bucket (ex*) for ready-to-use (ex**) puma application with app and db modules
-
 
 # homework #6 - terraform-1
 Created terraform config for puma appliaction
@@ -28,8 +30,6 @@ there is no problem on this step
 Exercise with **
 created and checked load balancer for puma appplication servers group (count used)
 	terraform conf file: ./terraform/lb.tf.example
-
-
 
 # homework #5 - packer-base
 
