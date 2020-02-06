@@ -2,9 +2,41 @@ dist: trusty
 sudo: required
 language: bash
 before_install:
-- curl https://raw.githubusercontent.com/express42/otus-homeworks/2019-11/run.sh |
-  bash
+- curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+- wget https://releases.hashicorp.com/terraform/0.12.9/terraform_0.12.9_linux_amd64.zip -O /tmp/terraform.zip
+- sudo unzip -o -d /usr/local/bin/ /tmp/terraform.zip
+- wget https://github.com/terraform-linters/tflint/releases/download/v0.13.4/tflint_linux_amd64.zip -O /tmp/tflint.zip
+- sudo unzip -o -d /usr/local/bin/ /tmp/tflint.zip
+- wget https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip -O /tmp/packer.zip
+- sudo unzip -o -d /usr/local/bin/ /tmp/packer.zip
+
+- curl https://raw.githubusercontent.com/express42/otus-homeworks/2019-11/run.sh | bash
+
+install:
+- python get-pip.py --user
+- pip install --user ansible
+- pip install --user ansible-lint
+
+script:
+- packer validate -var-file=packer/variables.json.example packer/db.json
+- packer validate -var-file=packer/variables.json.example packer/app.json
+
+- tflint terraform/
+- tflint terraform/stage
+- tflint terraform/prod
+
+- ansible-lint ansible/playbooks/*.yml --exclude=roles/jdauphant.nginx
+
+- cd terraform
+- terraform validate -var-file terraform.tfvars.example
+
+- cd stage
+- terraform validate
+
+- cd ../prod
+- terraform validate
+
 notifications:
   slack:
     rooms:
-      secure: A/xjH3jSOErHTCz4USpcdj7zzgljQKUvaBsclL/8ZRNQuSZNLheLiEzKAadet+Rc5VMjChHbrPzPlLSjPKN2LnvLOtfkhjqZVeQXLpjZ3iK8Vz8uwsk1Gs2aTsQcpNltj6UqjkpmVbLbfZzY3mfT66Ir/VkKTAtLOaanb2XNkMLJZWyt7e+2RlCS4oWKEIUw3XnBm02MRHlPOGTQ1zTwzdxVqRWii/SN27Pqm0yhbg37c/QnrZB9oQ6CyTxQHOFv2aY8P1dH5r4d206Bs/MqdaBreUHs1xajTVWRliPxLe4C4c22RKrgKLmuaztmK/pDDcFrVR6F3UEdKR/DHVjtjux1X4hCdsOJoXVZnafK+JsGA5A7yo0Ma1y9nkLJZopB1Pfw5g6OWGMQ47XrnEbO7ytMecJAbc3f9dYij3vKBsve00vwKlmDmsWGxOTMds6Zj7KDgCx+AEL4nyXRszf2/tPVlqfq3YC/OwG/JViPXf6O6TU0G1zYVTsiuq1S2qA6rEWeVCpajPAAcXSXvRNJ1qjvNMdhkMJjBeMikJC+MfiAnr5akd+O4rYNZEJm0RBfhN4fORJIkwEeyqpaXBu7eJ7/jv6RThZfC4Tb9ahbjSi4KMMv+U+R/1AQ5HOpaaFf5zuY1wsjaYXTImolB/KGUY8qCemWSPUc/iUD2+0cdPk=
+      secure: uB0vKHWzq+XYZJVBcdE3wWG8oIiIDx+3JxhqF69c/ENgBULkXnnyUzDJHFnGuW/mVfcTP+Ogoz61f0fQ8UtBWPDWlbLIQCiw4zJdy1I6GUQtp7+7aL006o23kOQoozLg1mMnXwxPga+lw8glLpIz2VWjkWrowMaDnFCmmAbzCODPvZFuyAiqkAIyUTxFuaggywlC1DtDenHRs9oYkaaCDzqM3XVt9NnSyOArd37TKEImxLoC7U3K88IaEt53Cc/dvs/dFtVqZG5X27Fsgxt5YzovwChm5MIFtx48qQoPLcDyzizNxTOi1VXVOnW/rOOPF1FqlsDtgRuuBy0KLnzZeHFi3MFqJHqm3Xsv8AzhSj//V3LO8pFKpmT0sRVWrZfHnFShMvrC9v8nri2oww5SZ8Shs3q+U+RfZ3fGCELCQ17w+nBZ+YGJfsRQ+yXkLSohzqsFsfuFvZ2R1XLsik3DJGnV6JqwdoUrfGAIUz2Zxr1i/oei6nn1/jIf+eXLKN6Ie3CjNEdY7PCSCM00SVcDHmJ5Eoh98VQEOBQ5FOQRdM8buYg6g6y6xqecE3u+LwZ/AT3UOYcypOaDyXwyzaqITl56XCp1fwDRSbxuHOqhwBsz3aEiuGvSgXQJND8Pk8L77NyZagLe+Ii8dN99BZnNJJwwtF59qFOu+u2cDWIugoc=
