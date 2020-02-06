@@ -29,13 +29,13 @@ script:
 - terraform get
 - terraform validate
 - cd stage
-- terraform init
+- terraform init -backend=false
 - terraform get
-- terraform validate -backend=false
+- terraform validate
 - cd ../prod
-- terraform init
+- terraform init -backend=false
 - terraform get
-- terraform validate -backend=false
+- terraform validate
 notifications:
   slack:
     rooms:
