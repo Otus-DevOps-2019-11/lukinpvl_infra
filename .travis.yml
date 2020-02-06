@@ -18,8 +18,8 @@ install:
 - pip install --user ansible-lint
 
 script:
-- packer validate -var-file=packer/variables.json.example packer/db.json
-- packer validate -var-file=packer/variables.json.example packer/app.json
+#- packer validate -var-file=packer/variables.json.example packer/db.json
+#- packer validate -var-file=packer/variables.json.example packer/app.json
 
 - tflint terraform/
 - tflint terraform/stage
