@@ -1,6 +1,9 @@
 plugin: gcp_compute
 projects:
   - infra-262810
+groups:
+  db: "'reddit-db' in name"
+  app: "'reddit-app' in name"
 filters:
 auth_kind: serviceaccount
 service_account_file: /root/infra-262810-2f94c2b7f7f5.json
