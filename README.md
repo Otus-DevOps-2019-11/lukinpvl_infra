@@ -1,6 +1,12 @@
 # lukinpvl_infra
 lukinpvl Infra repository
 
+# homework #11 - ansible-4
+Prepared ansible playbooks for Reddit app on Vagrant and Molecule
+
+# homework #10 - ansible-3
+Prepared ansible playbooks for Reddit app with roles
+
 # homework #9 - ansible-2
 Prepared ansible playbooks for Reddit app with templates and headlers
 
